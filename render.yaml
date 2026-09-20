@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: seaki-music-bot
+    env: node
+    plan: free
+    region: oregon
+    buildCommand: YOUTUBE_DL_SKIP_PYTHON_CHECK=1 npm install && npm run build
+    startCommand: npm run start
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: DISCORD_TOKEN
+        sync: false
+      - key: CLIENT_ID
+        sync: false
+      - key: GUILD_ID
+        sync: false
